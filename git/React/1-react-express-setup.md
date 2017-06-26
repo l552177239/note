@@ -2,7 +2,7 @@
 title: React快速环境配置
 ---
 
-# React快速配置
+### 快速配置
 
 第一步安装**git bash**；
 
