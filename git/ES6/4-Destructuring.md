@@ -74,6 +74,22 @@ f // 'hello'
 l // 'world'
 ```
 
+例子：利用对象解构赋值变量取属性同名的值
+```
+//父组件
+<Modal title='标题' cancelText='取消' okText='确定' show={this.state.show} onShow={this.handleClick}  >
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                </Modal>
+子组件想拿到父组件里的同名属性
+let {title,children,cancelText,okText} = this.props
+//等同于声明一个变量等于this.props下的同名属性
+//let title = this.props.title等等
+//下面使用时不用再写this.props.title可以代替直接用title代替
+```
+
 ```
 let hello = ({name,age}) => (
 	console.log(`my name:${name},age:${age}`)
