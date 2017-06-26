@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>第七小节：组件的Render方法 · GitBook</title>
+        <title>第十小节：组件的State和setState · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="8-component.html" />
     
-    
-    <link rel="prev" href="6-JSX.html" />
+    <link rel="prev" href="9-onclick.html" />
     
 
     </head>
@@ -479,7 +477,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.7" data-path="7-render.html">
+        <li class="chapter " data-level="1.4.7" data-path="7-render.html">
             
                 <a href="7-render.html">
             
@@ -518,7 +516,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.10" data-path="10-state.html">
+        <li class="chapter active" data-level="1.4.10" data-path="10-state.html">
             
                 <a href="10-state.html">
             
@@ -566,7 +564,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >第七小节：组件的Render方法</a>
+        <a href="../.." >第十小节：组件的State和setState</a>
     </h1>
 </div>
 
@@ -581,34 +579,121 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h3 id="&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;">&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;</h3>
-<pre><code class="lang-jsx"><span class="hljs-keyword">import</span> React,{Component} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
-<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-dom&apos;</span>;
-</code></pre>
-<p>&#x6211;&#x4EEC;&#x5728;&#x6587;&#x4EF6;&#x5934;&#x90E8;&#x4ECE; react &#x7684;&#x5305;&#x5F53;&#x4E2D;&#x5F15;&#x5165;&#x4E86; React &#xFF0C;&#x548C; React.js &#x7684;&#x7EC4;&#x4EF6;&#x7236;&#x7C7B; Component &#x53EA;&#x8981;&#x4F60;&#x8981;&#x5199;React.js&#x7EC4;&#x4EF6;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x5FC5;&#x987B;&#x8981;&#x5F15;&#x5165;&#x8FD9;&#x4E24;&#x4E2A;&#x4E1C;&#x897F;&#x3002;</p>
-<p><code>react-dom</code>&#x53EF;&#x4EE5;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x628A;&#x8FD9;&#x4E2A;&#x7528;&#x6765;&#x63CF;&#x8FF0; UI &#x4FE1;&#x606F;&#x7684; JavaScript &#x5BF9;&#x8C61;&#xFF08;React &#x7EC4;&#x4EF6;&#xFF09;&#x53D8;&#x6210; DOM &#x5143;&#x7D20;&#xFF0C;&#x5E76;&#x4E14;&#x6E32;&#x67D3;&#x5230;&#x9875;&#x9762;&#x4E0A;&#x53BB;&#x3002;</p>
-<p>&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x603B;&#x7ED3;&#x4E00;&#x4E0B;&#x4ECE; JSX &#x5230;&#x9875;&#x9762;&#x5230;&#x5E95;&#x7ECF;&#x8FC7;&#x4E86;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x8FC7;&#x7A0B;  </p>
-<p><img src="http://huzidaha.github.io/static/assets/img/posts/44B5EC06-EAEB-4BA2-B3DC-325703E4BA45.png" alt="ReactDOM">  </p>
-<p>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;</p>
-<pre><code class="lang-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
-<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-dom&apos;</span>
+                                <h3 id="state&#x72B6;&#x6001;&#x503C;">State(&#x72B6;&#x6001;&#x503C;)</h3>
+<p><code>state</code>&#x63A7;&#x5236;&#x7EC4;&#x4EF6;&#x5185;&#x90E8;&#x7684;&#x72B6;&#x6001;&#xFF0C;<code>state</code>&#x6539;&#x53D8;&#xFF0C;&#x91CD;&#x65B0;<code>render()</code>&#x754C;&#x9762;&#x91CD;&#x65B0;&#x6E32;&#x67D3;</p>
+<p>&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;state&#x503C;</p>
+<pre><code>import React from &apos;react&apos;
 
-ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>/&gt;</span></span>,<span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&apos;#root&apos;</span>))
-<span class="hljs-comment">//querySelector()&#xFF1A;JS&#x539F;&#x751F;&#x9009;&#x62E9;&#x5668;,&#x7C7B;&#x4F3C;jq&#x4E2D;&#x7684;$()&#x9009;&#x62E9;&#x5668;,&#x529F;&#x80FD;&#x5F3A;&#x5927;;</span>
-</code></pre>
-<p><code>ReactDOM.render</code>&#x529F;&#x80FD;&#x5C31;&#x662F;&#x628A;&#x7EC4;&#x4EF6;&#x6E32;&#x67D3;&#x5E76;&#x4E14;&#x6784;&#x9020; DOM &#x6811;&#xFF0C;&#x7136;&#x540E;&#x63D2;&#x5165;&#x5230;&#x9875;&#x9762;&#x4E0A;&#x67D0;&#x4E2A;&#x7279;&#x5B9A;&#x7684;&#x5143;&#x7D20;&#x4E0A;&#x3002;</p>
-<p><strong>&#x603B;&#x7ED3;</strong>&#xFF1A;</p>
-<ul>
-<li>JSX&#x8BED;&#x6CD5;&#x9700;&#x8981;bable&#x8FDB;&#x884C;&#x7F16;&#x8BD1;&#xFF0C;&#x8F6C;&#x4E3A;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;<code>React.createElement()</code></li>
-<li>&#x6807;&#x7B7E;&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;</li>
-<li>&#x6807;&#x7B7E;&#x5FC5;&#x987B;&#x95ED;&#x5408;</li>
-<li>&#x76F8;&#x90BB;&#x7684;JSX&#x5143;&#x7D20;&#x5FC5;&#x987B;&#x5305;&#x88F9;&#x5728;&#x4E00;&#x4E2A;&#x95ED;&#x5408;&#x6807;&#x7B7E;&#x5185;</li>
-<li>class&#x5199;&#x4E3A;className,for&#x5199;&#x4E3A;htmlfor</li>
-<li>&#x4F7F;&#x7528;&#x9A7C;&#x5CF0;&#x547D;&#x540D;</li>
-<li>&#x58F0;&#x660E;&#x5F0F;&#x6E32;&#x67D3;&#xFF1A;&#x53EF;&#x4EE5;&#x5D4C;&#x5165;&#x53D8;&#x91CF;&#xFF0C;&#x53D8;&#x91CF;&#x7528; <strong>{}</strong> &#x5305;&#x88F9;</li>
-<li>&#x5728;JSX&#x8BED;&#x6CD5;&#x4E2D;&#x53EF;&#x4EE5;&#x5D4C;&#x5165;&#x53D8;&#x91CF;&#x548C;&#x8868;&#x8FBE;&#x5F0F;,&#x53EF;&#x4EE5;&#x5199;js&#x8BED;&#x6CD5;,&#x4F46;&#x4E0D;&#x80FD;&#x7528;js&#x8BED;&#x53E5;</li>
-</ul>
+class App extends React.Component{
+  constructor(){
+    super()
+//state&#x5C5E;&#x6027;&#x7B49;&#x4E8E;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;
+//&#x5BF9;&#x8C61;&#x5185;&#x53EF;&#x4EE5;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x3001;&#x6570;&#x7EC4;&#x3001;&#x5BF9;&#x8C61;&#x3001;&#x5E03;&#x5C14;&#x503C;&#x7B49;&#x7B49;&#xFF0C;&#x7528;,&#x9694;&#x5F00;
+    this.state = {
+      num:0
+    }
+  }
+  render(){
+    return(
+      &lt;div&gt;
+        {this.state.num}
+      &lt;/div&gt;    
+    )
+  }
+}
+export default App
+</code></pre><h3 id="setstate&#x63A5;&#x53D7;&#x5BF9;&#x8C61;&#x53C2;&#x6570;">setState(&#x63A5;&#x53D7;&#x5BF9;&#x8C61;&#x53C2;&#x6570;)</h3>
+<p>&#x4FEE;&#x6539;<code>setState</code>&#x7684;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x89E6;&#x53D1;<code>render</code>&#x81EA;&#x52A8;&#x66F4;&#x65B0;&#xFF08;&#x754C;&#x9762;&#x91CD;&#x65B0;&#x6E32;&#x67D3;&#xFF09;</p>
+<p>&#x5229;&#x7528;<code>setState</code>&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#x70B9;&#x51FB;+1</p>
+<pre><code>import React from &apos;react&apos;
 
+class App extends React.Component{
+  constructor(){
+    super()
+      this.state = {
+         num:0
+      }
+  }
+  handleClick(){
+  this.setState({
+    num: ++this.state.num
+    })
+  }
+  render(){
+    let styles={textAlign:&apos;center&apos;}
+    return(
+      &lt;div&gt;
+        &lt;span style={styles}&gt;{this.state.num}&lt;/span&gt;&lt;br /&gt;
+        &lt;input type=&apos;button&apos; value=&apos;+1&apos; onClick={this.handleClick.bind(this)} /&gt;&lt;br /&gt;
+      &lt;/div&gt;    
+    )
+  }
+}
+export default App
+</code></pre><p>&#x5229;&#x7528;<code>setState</code>&#x65B9;&#x6CD5;&#x5207;&#x6362;&#x72B6;&#x6001;&#x503C;</p>
+<pre><code>import React from &apos;react&apos;
+
+class App extends React.Component{
+  constructor(){
+    super()
+      this.state = {
+          show:true
+      }
+  }
+  handleClick(){
+    this.setState({
+      show:!this.state.show 
+    })
+  }
+  render(){
+    return(
+      &lt;div&gt;
+        &lt;input type=&apos;button&apos; value={this.state.show ? &apos;&#x663E;&#x793A;&apos; : &apos;&#x4E0D;&#x663E;&#x793A;&apos;} onClick={this.handleClick.bind(this)} /&gt;
+        &lt;p&gt;{this.state.show ? &apos;&#x54C8;&#x54C8;&apos; : &apos;&apos;}&lt;/p&gt;
+      &lt;/div&gt;    
+    )
+  }
+}
+export default App
+</code></pre><p><code>setState</code>&#x7684;&#x5E94;&#x7528;</p>
+<pre><code>import React from &apos;react&apos;
+
+class App extends React.Component{
+  constructor(){
+    super()
+    this.handleClick = this.handleClick.bind(this)
+    this.state = {
+      num:0,
+      show:false
+    }
+  }
+  handleInc(num){
+    this.setState({
+      num: (this.state.num + num)&lt;0 ? 0 : this.state.num + num
+    })
+  }
+  handleClick(){
+    this.setState({
+      show:!this.state.show 
+    })
+  }
+  render(){
+    let styles={textAlign:&apos;center&apos;}
+    return(
+      &lt;div&gt;
+        &lt;span style={styles}&gt;{this.state.num}&lt;/span&gt;&lt;br /&gt;
+        &lt;input type=&apos;button&apos; value=&apos;+1&apos; onClick={this.handleInc.bind(this,1)} /&gt;
+        &lt;input type=&apos;button&apos; value=&apos;-1&apos; onClick={this.handleInc.bind(this,-1)} /&gt;&lt;br /&gt;
+        &lt;input type=&apos;button&apos; value={this.state.show ? &apos;&#x663E;&#x793A;&apos; : &apos;&#x597D;&#x4EBA;&apos;} onClick={this.handleClick} /&gt;
+          &lt;p onClick={this.handleClick} &gt;
+          {this.state.show ? &apos;&#x51FA;&#x6765;&#x6DF7;&#x603B;&#x662F;&#x8981;&#x8FD8;&#x7684;&apos; : &apos;&#x662F;&#x4F60;&#x6BC1;&#x4E86;&#x4E00;&#x4E2A;&#x6211;&#x5F53;&#x597D;&#x4EBA;&#x7684;&#x673A;&#x4F1A;&apos;}
+          &lt;/p&gt;
+      &lt;/div&gt;    
+    )
+  }
+}
+export default App
+</code></pre>
                                 
                                 </section>
                             
@@ -635,14 +720,10 @@ ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-n
 
             
                 
-                <a href="6-JSX.html" class="navigation navigation-prev " aria-label="Previous page: 第六小节：JSX语法">
+                <a href="9-onclick.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 第九小节：事件监听">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="8-component.html" class="navigation navigation-next " aria-label="Next page: 第八小节：组件的组合、嵌套和组件树">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -651,7 +732,7 @@ ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-n
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"第七小节：组件的Render方法","level":"1.4.7","depth":2,"next":{"title":"第八小节：组件的组合、嵌套和组件树","level":"1.4.8","depth":2,"path":"git/React/8-component.md","ref":"./git/React/8-component.md","articles":[]},"previous":{"title":"第六小节：JSX语法","level":"1.4.6","depth":2,"path":"git/React/6-JSX.md","ref":"./git/React/6-JSX.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"git/React/7-render.md","mtime":"2017-06-26T04:55:08.662Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-06-26T05:34:43.445Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"第十小节：组件的State和setState","level":"1.4.10","depth":2,"previous":{"title":"第九小节：事件监听","level":"1.4.9","depth":2,"path":"git/React/9-onclick.md","ref":"./git/React/9-onclick.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"git/React/10-state.md","mtime":"2017-06-26T05:34:35.810Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-06-26T05:34:43.445Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
