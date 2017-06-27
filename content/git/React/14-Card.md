@@ -1,7 +1,3 @@
----
-title:小案例（Card）
----
-
 ### 小案例（card）
 
 ```
@@ -25,6 +21,8 @@ class App extends React.Component{
 }
 export default App
 ```
+
+可复用子组件
 
 ```
 import React from 'react'

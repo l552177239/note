@@ -1,10 +1,7 @@
----
-title:组件间的沟通 props
----
-
 ## 配置组件的 props (属性)
 
 组件内部是通过 **this.props** 的方式获取到组件的参数的，如果`this.props`里面有需要的属性我们就采用相应的属性，没有的话就用默认的属性。
+
 ```
 class App extends React.Component{
   render(){

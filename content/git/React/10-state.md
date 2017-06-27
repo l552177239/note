@@ -1,7 +1,3 @@
----
-title: State(状态值)
----
-
 ### State(状态值)
 
 `state`控制组件内部的状态，`state`改变，重新`render()`界面重新渲染
