@@ -23,7 +23,7 @@
 	- [第七小节：Class的基本语法与继承](./git/ES6/7-class.md)
 	- [第八小节：模块的基本语法](./git/ES6/8-Module.md)
 * 第三章 React
-	- [第一小节：React环境快速配置](./git/React/1-react-express-setup.md)
+	- [第一小节：React环境快速配置](./git/React/1-react-setup.md)
 	- [第二小节：React环境配置](./git/React/2-create-react-app.md)
 	- [第三小节：npm语句](./git/React/3-npm.md)
 	- [第四小节：Webpack配置](./git/React/4-webpack.md)
